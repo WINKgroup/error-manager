@@ -1,7 +1,7 @@
 export default class ErrorManagerClient {
     e?:unknown
 
-    costructor (e?:unknown) {
+    constructor (e?:unknown) {
         this.e = e
     }
 

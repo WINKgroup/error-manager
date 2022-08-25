@@ -1,6 +1,6 @@
 export default class ErrorManagerClient {
     e?: unknown;
-    costructor(e?: unknown): void;
+    constructor(e?: unknown);
     public(e?: unknown): {
         [key: string]: any;
     };

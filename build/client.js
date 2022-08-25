@@ -1,11 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ErrorManagerClient = /** @class */ (function () {
-    function ErrorManagerClient() {
-    }
-    ErrorManagerClient.prototype.costructor = function (e) {
+    function ErrorManagerClient(e) {
         this.e = e;
-    };
+    }
     ErrorManagerClient.prototype.public = function (e) {
         if (!e)
             e = this.e;
