@@ -1,27 +1,17 @@
 import express from "express"
+import ErrorManager from "./client"
 
-export default class ErrorManager {
-    static public(e:unknown) {
-        console.error(e)
-        let error:{[key: string]: any} = {
-            status: 'error',
-            message: 'internal error'
-        }
+export default class ErrorManagerServer extends ErrorManager {
+    sender(res:express.Response, e?:unknown) {
+        const err = this.get(e)
+        let statusCode = 500
 
-        if (e instanceof Error) {
-            if (e.name === 'MongoError') {
-                error = JSON.parse( JSON.stringify(e) )
-                delete error.name
-                error.message = 'internal error'
-                if (e.message.indexOf('duplicate key') !== -1) error.message = 'duplication'
-            }
-        }
-
-        return error
+        if (err.message.indexOf('not found') !== -1) statusCode = 404
+        res.status(statusCode).json(err)
     }
 
-    static sender(e:unknown, res:express.Response) {
-        const err = this.public(e)
-        res.status(500).json(err)
+    static get(e:unknown) {
+        const errorManager = new ErrorManagerServer(e)
+        return errorManager.get()
     }
 }

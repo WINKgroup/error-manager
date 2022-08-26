@@ -1,6 +1,6 @@
 {
   "name": "@winkgroup/error-manager",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Helper class to manage errors of a REST webserver and mongoose",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",

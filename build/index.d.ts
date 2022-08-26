@@ -1,7 +1,6 @@
 import express from "express";
-export default class ErrorManager {
-    static public(e: unknown): {
-        [key: string]: any;
-    };
-    static sender(e: unknown, res: express.Response): void;
+import ErrorManager from "./client";
+export default class ErrorManagerServer extends ErrorManager {
+    sender(res: express.Response, e?: unknown): void;
+    static get(e: unknown): import("./client").ErrorManagerResult;
 }
